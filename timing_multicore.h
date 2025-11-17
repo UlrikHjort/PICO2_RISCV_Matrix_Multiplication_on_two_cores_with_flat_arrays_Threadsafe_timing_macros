@@ -32,16 +32,16 @@ absolute_time_t start_global_1 = 0;
 
 #define TIME_US_STOP(label) {\
 		if (sio_hw->cpuid == 0) \
-			printf("%s: (Core %d) %lld us\r\n", label, sio_hw->cpuid, (absolute_time_diff_us(start_global_0, get_absolute_time()))); \
+			printf("%s: (Core %ld) %lld us\r\n", label, sio_hw->cpuid, (absolute_time_diff_us(start_global_0, get_absolute_time()))); \
 		else \
- 			printf("%s: (Core %d) %lld us\r\n", label, sio_hw->cpuid, (absolute_time_diff_us(start_global_1, get_absolute_time()))); \
+ 			printf("%s: (Core %ld) %lld us\r\n", label, sio_hw->cpuid, (absolute_time_diff_us(start_global_1, get_absolute_time()))); \
 		}
 
 #define TIME_MS_STOP(label)	{ \
 	if (sio_hw->cpuid == 0)	 \
-		printf("%s: (Core %d) %lld ms\r\n", label, sio_hw->cpuid, (absolute_time_diff_us(start_global_0, get_absolute_time()) / 1000)); \
+		printf("%s: (Core %ld) %lld ms\r\n", label, sio_hw->cpuid, (absolute_time_diff_us(start_global_0, get_absolute_time()) / 1000)); \
     else \
-		printf("%s: (Core %d) %lld ms\r\n", label, sio_hw->cpuid, (absolute_time_diff_us(start_global_1, get_absolute_time()) / 1000)); \
+		printf("%s: (Core %ld) %lld ms\r\n", label, sio_hw->cpuid, (absolute_time_diff_us(start_global_1, get_absolute_time()) / 1000)); \
     }
 
 
@@ -49,14 +49,14 @@ absolute_time_t start_global_1 = 0;
 {                             \
  absolute_time_t start_local = get_absolute_time(); \
  func;    \
- printf(#func ": (Core: %d) %lld us\r\n", sio_hw->cpuid, absolute_time_diff_us(start_local, get_absolute_time())); \
+ printf(#func ": (Core: %ld) %lld us\r\n", sio_hw->cpuid, absolute_time_diff_us(start_local, get_absolute_time())); \
 }
 
 #define TIME_MEASURE_MS(func) \
 {                             \
  absolute_time_t start_local = get_absolute_time(); \
  func;                 \
- printf(#func ": (Core: %d) %lld ms\r\n", sio_hw->cpuid, (absolute_time_diff_us(start_local, get_absolute_time()) / 1000)); \
+ printf(#func ": (Core: %ld) %lld ms\r\n", sio_hw->cpuid, (absolute_time_diff_us(start_local, get_absolute_time()) / 1000)); \
 }
 
 #endif /* INC_TIMING_H_ */
